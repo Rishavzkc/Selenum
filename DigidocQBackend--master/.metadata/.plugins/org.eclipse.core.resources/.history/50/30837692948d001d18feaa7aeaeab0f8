@@ -1,0 +1,5 @@
+package Selenium.maven.Selenium.maven.demo;
+
+public class Standalone {
+
+}

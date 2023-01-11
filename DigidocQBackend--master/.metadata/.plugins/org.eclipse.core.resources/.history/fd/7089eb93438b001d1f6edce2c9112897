@@ -1,0 +1,16 @@
+package TestNG;
+
+public class Day3 {
+
+	
+	public void WebloginCarLoan() {
+		
+	}
+	
+public void MobileloginCarLoan() {
+		
+	}
+public void LoginApiCarLoan() {
+	
+}
+}

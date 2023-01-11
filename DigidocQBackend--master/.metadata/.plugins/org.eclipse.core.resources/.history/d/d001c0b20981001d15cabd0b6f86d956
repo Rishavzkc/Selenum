@@ -1,0 +1,17 @@
+package Selen;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SelIntro {
+
+	public static void main(String[] args) {
+		
+	
+	//	System.setProperty("webdriver.chrome.driver", "C:\\Users\\1037482\\Downloads\\java\\chromedriver.exe");
+		//ChromeDriver driver =new ChromeDriver();
+		WebDriver driver =new ChromeDriver();
+
+	}
+
+}

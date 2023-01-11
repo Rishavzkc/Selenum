@@ -1,0 +1,18 @@
+package TestNG;
+
+import org.testng.annotations.Test;
+
+public class Day4 {
+
+	@Test
+	public void Manager() {
+		System.out.println("Manager");
+
+	}
+
+	@Test
+	public void Employee() {
+
+		System.out.println("Employee");
+	}
+}

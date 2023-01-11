@@ -1,0 +1,74 @@
+package Selenium.maven;
+
+import java.io.IOException;
+import java.time.Duration;
+import java.util.List;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import PageObject.BaseTest;
+import PageObject.CartPage;
+import PageObject.CheckoutPage;
+import PageObject.ConfirmationPage;
+import PageObject.LandingPage;
+import PageObject.OrderPage;
+import PageObject.ProductCatlogue;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class SubmitOrderTest extends BaseTest {
+	String productName = "Zara coat 3";
+
+	@Test(dataProvider = "getData", groups = { "Purchase" })
+	public void submitOrder(String email, String password, String productName)
+			throws InterruptedException, IOException {
+
+		// LandingPage landingPage =launchApplication();
+		ProductCatlogue productCatlogue = landingPage.loginApplication("rishav@gmail.com", "Rk@123456");
+
+		// ProductCatlogue productCatlogue =new ProductCatlogue(driver) ;
+		List<WebElement> products = productCatlogue.getProductList();
+		productCatlogue.addProductToCart(productName);
+		CartPage cartPage = productCatlogue.gotocart();
+
+		// CartPage cartPage =new CartPage(driver);
+		Boolean Match = cartPage.verifyProductDisplay(productName);
+		Assert.assertTrue(Match);
+
+		CheckoutPage checkoutPage = cartPage.gotoCheckout();
+		checkoutPage.selectCountry("india");
+		ConfirmationPage confirmationPage = checkoutPage.submitOrder();
+		String message = confirmationPage.getConfirmationMessage();
+		Assert.assertTrue(message.equalsIgnoreCase("THANKYOU FOR THE ORDER. "));
+
+	}
+
+	@Test(dependsOnMethods = { "submitOrder" })
+	public void orderHistoryTest() {
+		ProductCatlogue productCatlogue = landingPage.loginApplication("rishav@gmail.com", "Rk@123456");
+		OrderPage orderPage = productCatlogue.gotoOrderPage();
+		Assert.assertTrue(orderPage.verifyOrderDisplay(productName));
+
+	}
+
+	@DataProvider
+	public Object[][] getData() {
+		HashMap<Object, Object> map= new HashMap<Object, Object>();
+		map.put("email", "rishav@gmail.com");
+		map.put("password", "Rk@123456");
+		map.put("productName","Zara coat 3");
+		return new Object[][] { { "rishav@gmail.com", "Rk@123456", "Zara coat 3" },
+				{ "shetty@gmail.com", "Iamking@000", "ADIDAS ORIGINAL" } };
+	}
+
+}

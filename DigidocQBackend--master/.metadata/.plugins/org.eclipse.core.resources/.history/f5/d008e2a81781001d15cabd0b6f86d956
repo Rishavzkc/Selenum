@@ -1,0 +1,10 @@
+/**
+ * 
+ */
+/**
+ * @author 1037482
+ *
+ */
+module Project {
+	requires org.seleniumhq.selenium.api;
+}

@@ -1,0 +1,12 @@
+package PageObject;
+
+import java.io.IOException;
+
+public class ErrorValidation extends BaseTest{
+
+public void submitOrder() throws InterruptedException, IOException {
+		
+		String productName ="Zara coat 3";
+		ProductCatlogue productCatlogue =	landingPage.loginApplication("rishav@gmail.com", "Rk@123456");
+}
+}

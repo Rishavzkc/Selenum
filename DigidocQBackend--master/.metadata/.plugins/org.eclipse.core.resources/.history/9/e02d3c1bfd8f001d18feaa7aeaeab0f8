@@ -1,0 +1,32 @@
+package PageObject;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class ErrorValidation extends BaseTest {
+
+	@Test
+
+	public void loginErrorvalidation() throws InterruptedException, IOException {
+
+		String productName = "Zara coat 3";
+		landingPage.loginApplication("rishav@gmail.cm", "Rk@123456");
+		Assert.assertEquals("Incorrect email or password. ", landingPage.getErrorMessage());
+
+	}
+
+	public void ProductErrorvalidation() throws InterruptedException, IOException {
+		String productName = "Zara coat 3";
+		ProductCatlogue productCatlogue = landingPage.loginApplication("rishav@gmail.com", "Rk@123456");
+		List<WebElement> products = productCatlogue.getProductList();
+		productCatlogue.addProductToCart(productName);
+		CartPage cartPage = productCatlogue.gotocart();
+
+		Boolean Match = cartPage.verifyProductDisplay(productName);
+		Assert.assertTrue(Match);
+	}
+}

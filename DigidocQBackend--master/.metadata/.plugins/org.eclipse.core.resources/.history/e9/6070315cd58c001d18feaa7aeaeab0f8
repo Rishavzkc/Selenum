@@ -1,0 +1,23 @@
+package Testing.Selenium;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Login 
+{
+    public static void main( String[] args ) throws InterruptedException {
+    System.setProperty("webdriver.chrome.driver", "C:\\Users\\1037482\\Downloads\\java\\chromedriver.exe");
+	WebDriver driver = new ChromeDriver();
+	driver.manage().window().maximize();
+	driver.get("http://kioxia-3dwalker.quest-global.com/#/login");
+	// driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	driver.findElement(By.cssSelector("input[type='email']")).sendKeys("demo@quest-global.com");
+	driver.findElement(By.cssSelector("input[type='password']")).sendKeys("demo@123");
+	driver.findElement(By.cssSelector("button[type='submit']")).click();
+	Thread.sleep(5000);
+driver.findElement(By.xpath("//app-dashboard/div[2]/div/div/div[1]/app-maps/div[1]/div/div[3]/div/div[2]/div/div/div/div/a[1]/img")).click();
+}
+}

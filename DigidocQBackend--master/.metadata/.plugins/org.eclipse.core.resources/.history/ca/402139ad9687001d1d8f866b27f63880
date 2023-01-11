@@ -1,0 +1,28 @@
+package SeleniumPract;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class LinkWork {
+
+	public static void main(String[] args) {
+
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\1037482\\Downloads\\java\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
+		// no of links in page
+		System.out.println("No. of link in whole page");
+		System.out.println(driver.findElements(By.tagName("a")).size());
+
+		// no of link in footer section
+		System.out.println("No. of link in footer section");
+		WebElement footer = driver.findElement(By.id("gf-BIG"));
+		System.out.println(footer.findElements(By.tagName("a")).size());
+		
+		
+	}
+
+}

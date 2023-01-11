@@ -1,0 +1,12 @@
+package Controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class BookController {
+
+	public static getBooks() {
+		return "this is for testing Purpose" ;
+		}
+	
+}

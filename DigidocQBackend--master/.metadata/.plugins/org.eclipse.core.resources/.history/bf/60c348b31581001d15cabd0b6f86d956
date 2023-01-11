@@ -1,0 +1,35 @@
+package Selen;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+public class SelIntro {
+
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\1037482\\Downloads\\java\\chromedriver.exe");
+		
+		WebDriver driver =new ChromeDriver();
+		
+		driver.get("https://rahulshettyacademy.com");
+
+		System.out.println(driver.getTitle());
+
+		System.out.println(driver.getCurrentUrl());
+
+		
+		driver.findElement(By.id("email")).sendKeys("jack@gmail.com");
+		driver.findElement(By.name("password")).sendKeys("jack12");
+		driver.findElement(By.cssSelector(".btn")).click();
+
+		//driver.quit();
+
+
+
+	}
+
+}
